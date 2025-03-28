@@ -107,7 +107,7 @@
                 <div class="swiper-slide">
                     <div class="news-card">
                         <div class="news-card__image">
-                            <img src="{{ asset($item->main_image) }}" alt="{{ $item->title }}">
+                            <img src="{{ asset('storage/' .$item->main_image) }}" alt="{{ $item->title }}">
                         </div>
                         <div class="news-card__content">
                             <h3 class="news-card__title">{{ $item->title }}</h3>

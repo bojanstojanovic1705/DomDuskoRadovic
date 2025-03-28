@@ -1,5 +1,7 @@
+/* Optimizovani CSS za Dom Duško Radović */
+
+/* Koristi @import samo za fontove, ostalo učitavamo direktno */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Montserrat:wght@500;700&display=swap');
-@import '../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 
 /* Reset & Base styles */
 * {
@@ -14,9 +16,22 @@ body {
     color: #333;
 }
 
+/* Kompresovane boje i skraćeni zapis gde je moguće */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --text-color: #333;
+    --text-light: #6c757d;
+    --border-color: #dee2e6;
+    --shadow: 0 5px 15px rgba(0,0,0,.1);
+}
+
 /* Navigation */
 .navbar {
-    background-color: #2c3e50;
+    background-color: var(--primary-color);
     height: 70px;
     position: fixed;
     top: 0;
@@ -61,32 +76,28 @@ body {
     padding: 1rem;
     display: block;
     font-weight: 600;
-    transition: color 0.3s ease;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
+    transition: color .3s;
+    font-size: .9rem;
+    letter-spacing: .5px;
 }
 
 .navbar__menu a:hover {
-    color: #3498db;
+    color: var(--secondary-color);
 }
 
 /* Navbar dropdown */
-.navbar__menu li {
-    position: relative;
-}
-
 .navbar__menu .dropdown {
     position: absolute;
     top: 100%;
     left: 0;
-    background: #2c3e50;
+    background: var(--primary-color);
     min-width: 200px;
     padding: 1rem 0;
     border-radius: 0 0 10px 10px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: all 0.3s ease;
+    transition: all .3s;
     z-index: 1000;
 }
 
@@ -100,79 +111,47 @@ body {
     margin: 0;
 }
 
-.navbar__menu .dropdown a {
-    color: #fff;
-    padding: 0.8rem 1.5rem;
-    display: block;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.navbar__menu .dropdown a:hover {
-    background: #34495e;
-    padding-left: 2rem;
-}
-
-/* Aktivni link u dropdown meniju */
-.navbar__menu .dropdown a.active {
-    background: #34495e;
-    padding-left: 2rem;
-}
-
-/* Dropdown Menu */
-.dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #2c3e50;
-    min-width: 220px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.navbar__menu li:hover > .dropdown {
-    display: block;
-}
-
-.dropdown a {
-    padding: 0.75rem 1rem;
-}
-
-.dropdown a:hover {
-    background-color: #34495e;
-}
-
-.dropdown-menu {
-    border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    padding: 1rem 0;
-}
-
-.dropdown-item {
-    padding: 0.7rem 1.5rem;
-    color: #2c3e50;
-    transition: all 0.3s ease;
-}
-
-.dropdown-item:hover,
-.dropdown-item.active {
-    background: linear-gradient(90deg, #0056b3, #3498db);
-    color: white;
-}
-
-.nav-link.dropdown-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.nav-link.dropdown-toggle::after {
-    transition: transform 0.3s ease;
-}
-
-.nav-link.dropdown-toggle[aria-expanded="true"]::after {
-    transform: rotate(180deg);
+/* Mobilna navigacija */
+@media (max-width: 768px) {
+    .mobile-menu-button {
+        display: block;
+    }
+    
+    .navbar__menu {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        flex-direction: column;
+        padding: 20px 0;
+        z-index: 1000;
+    }
+    
+    .navbar__menu.show {
+        display: flex;
+    }
+    
+    .navbar__menu li {
+        margin: 10px 0;
+    }
+    
+    .navbar__menu .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height .3s;
+        padding: 0;
+    }
+    
+    .navbar__menu li:hover .dropdown {
+        max-height: 500px;
+        padding: 10px 0;
+    }
 }
 
 /* Hero Fullscreen */
@@ -218,7 +197,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: var(--primary-color);
 }
 
 /* Section Styles */
@@ -228,7 +207,7 @@ body {
 
 .section-title {
     font-size: 2.5rem;
-    color: #2c3e50;
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: 2rem;
     font-weight: 600;
@@ -270,7 +249,7 @@ body {
 
 .feature-title {
     font-size: 1.5rem;
-    color: #2c3e50;
+    color: var(--primary-color);
     margin-bottom: 1rem;
     font-weight: 700;
     transition: color 0.3s ease;
@@ -284,7 +263,7 @@ body {
 
 .feature-card:hover {
     transform: scale(1.05);
-    background-color: #2c3e50;
+    background-color: var(--primary-color);
     color: white;
 }
 
@@ -318,7 +297,7 @@ body {
 .quote-text {
     font-size: 1.5rem;
     line-height: 1.6;
-    color: #2c3e50;
+    color: var(--primary-color);
     font-style: italic;
     position: relative;
     padding: 0 2rem;
@@ -328,7 +307,7 @@ body {
 .quote-text::after {
     content: '"';
     font-size: 4rem;
-    color: #2c3e50;
+    color: var(--primary-color);
     opacity: 0.1;
     position: absolute;
     top: -1rem;
@@ -403,7 +382,7 @@ body {
 .news-card__button {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: #0056b3;
+    background-color: var(--primary-color);
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
@@ -418,11 +397,11 @@ body {
 /* News Slider Navigation */
 .news-slider .swiper-button-next,
 .news-slider .swiper-button-prev {
-    color: #0056b3;
+    color: var(--primary-color);
 }
 
 .news-slider .swiper-pagination-bullet {
-    background: #0056b3;
+    background: var(--primary-color);
 }
 
 .news-slider .swiper-pagination-bullet-active {
@@ -433,7 +412,7 @@ body {
 .swiper-pagination-bullet {
     width: 12px;
     height: 12px;
-    background: #2c3e50;
+    background: var(--primary-color);
     opacity: 0.2;
 }
 
@@ -1112,7 +1091,7 @@ body {
 
 .submit-btn {
     background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 28%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 28%, rgba(0,212,255,1) 100%);
     color: white;
     padding: 1.2rem 2rem;
     border-radius: 12px;
@@ -1135,8 +1114,7 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 28%, rgba
     width: 100%;
     height: 100%;
     background: rgb(2,0,36);
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 28%, rgba(0,212,255,1) 100%);
-   
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(44,62,80,1) 28%, rgba(0,212,255,1) 100%);
     transition: opacity 0.3s ease;
 }
 
