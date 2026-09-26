@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Vesti')
+@section('title', 'Вести')
 
 @section('content')
 <section class="section news-archive">
     <div class="container">
-        <h1 class="section-title">Vesti</h1>
+        <h1 class="section-title">Вести</h1>
         
         <div class="news-grid">
             @foreach($news as $item)
@@ -14,7 +14,7 @@
                     @if($item->images->isNotEmpty())
                         <img src="{{ asset('storage/' . $item->images->first()->image_path) }}" 
                              alt="{{ $item->title }}"
-                             class="img-fluid">
+                             class="img-fluid" loading="lazy">
                     @endif
                 </div>
                 <div class="news-card__content">
@@ -23,7 +23,7 @@
                         {{ $item->published_at->format('d.m.Y.') }}
                     </time>
                     <p class="news-card__excerpt">{{ $item->excerpt }}</p>
-                    <a href="{{ route('news.show', $item->slug) }}" class="news-card__button">Pročitaj više</a>
+                    <a href="{{ route('news.show', $item->slug) }}" class="news-card__button">Прочитај више</a>
                 </div>
             </article>
             @endforeach
@@ -40,28 +40,21 @@
 <style>
 .news-archive {
     padding: 4rem 0;
-    background-color: #f8f9fa;
+    background-color: #f6f8fb;
+    margin-top: 72px;
 }
-
 .news-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 2rem;
     margin: 2rem 0;
 }
-
 @media (min-width: 768px) {
-    .news-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (min-width: 1024px) {
-    .news-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+    .news-grid { grid-template-columns: repeat(3, 1fr); }
 }
-
 .news-card__date {
     display: block;
     color: #666;
@@ -69,46 +62,29 @@
     margin: 0.5rem 0;
     font-size: 0.9rem;
 }
-
 .pagination-container {
     margin-top: 3rem;
     display: flex;
     justify-content: center;
 }
-
-/* Laravel Pagination Customization */
-.pagination {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.pagination li {
-    margin: 0 0.25rem;
-}
-
+.pagination { display: flex; list-style: none; padding: 0; margin: 0; }
+.pagination li { margin: 0 0.25rem; }
 .pagination li a,
 .pagination li span {
     display: block;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    color: #0056b3;
+    color: #1e3a5f;
     text-decoration: none;
     background: #fff;
     border: 1px solid #dee2e6;
 }
-
 .pagination li.active span {
-    background: #0056b3;
+    background: #1e3a5f;
     color: #fff;
-    border-color: #0056b3;
+    border-color: #1e3a5f;
 }
-
-.pagination li a:hover {
-    background: #e9ecef;
-}
-
+.pagination li a:hover { background: #e9ecef; }
 .pagination li.disabled span {
     color: #6c757d;
     pointer-events: none;
