@@ -27,7 +27,7 @@
 
             @if($news->images->count() > 1)
             <div class="news-article__gallery mt-4">
-                <h3>Galerija slika</h3>
+                <h3>Галерија слика</h3>
                 <div class="gallery-slider swiper">
                     <div class="swiper-wrapper">
                         @foreach($news->images as $image)
@@ -51,7 +51,7 @@
 
             <footer class="news-article__footer mt-4">
                 <a href="{{ route('news.index') }}" class="btn btn-primary">
-                    <i class="fas fa-arrow-left"></i> Nazad na sve vesti
+                    <i class="fas fa-arrow-left"></i> Назад на све вести
                 </a>
             </footer>
         </article>
@@ -62,97 +62,26 @@
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <style>
-    .news-detail {
-        padding: 4rem 0;
-    }
-
-    .news-article {
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .news-article__header {
-        margin-bottom: 2rem;
-        text-align: center;
-    }
-
-    .news-article__title {
-        font-size: 2.5rem;
-        color: #333;
-        margin-bottom: 0.5rem;
-    }
-
-    .news-article__date {
-        color: #666;
-        font-style: italic;
-    }
-
+    .news-detail { padding: 4rem 0; margin-top: 72px; }
+    .news-article { max-width: 800px; margin: 0 auto; }
+    .news-article__header { margin-bottom: 2rem; text-align: center; }
+    .news-article__title { font-size: 2.5rem; color: #1e3a5f; margin-bottom: 0.5rem; }
+    .news-article__date { color: #666; font-style: italic; }
     .news-article__main-image {
-        margin-bottom: 2rem;
-        border-radius: 8px;
-        overflow: hidden;
+        margin-bottom: 2rem; border-radius: 8px; overflow: hidden;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
-    .news-article__main-image img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-    }
-
-    .news-article__content {
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #444;
-        margin-bottom: 3rem;
-    }
-
-    .news-article__gallery {
-        margin-bottom: 3rem;
-    }
-
-    .news-article__gallery h3 {
-        text-align: center;
-        margin-bottom: 1.5rem;
-        color: #333;
-    }
-
-    .gallery-slider {
-        padding-bottom: 3rem;
-    }
-
-    .gallery-item {
-        margin: 0;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .gallery-item img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .swiper-button-next,
-    .swiper-button-prev {
-        color: #0056b3;
-    }
-
-    .swiper-pagination-bullet {
-        background: #0056b3;
-    }
-
-    .swiper-pagination-bullet-active {
-        background: #003d82;
-    }
-
-    .news-article__footer {
-        text-align: center;
-        margin-top: 3rem;
-    }
+    .news-article__main-image img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .news-article__content { font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 3rem; }
+    .news-article__gallery { margin-bottom: 3rem; }
+    .news-article__gallery h3 { text-align: center; margin-bottom: 1.5rem; color: #1e3a5f; }
+    .gallery-slider { padding-bottom: 3rem; }
+    .gallery-item { margin: 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .gallery-item img { width: 100%; height: 400px; object-fit: cover; border-radius: 8px; }
+    .swiper-button-next, .swiper-button-prev { color: #1e3a5f; }
+    .swiper-pagination-bullet { background: #1e3a5f; }
+    .swiper-pagination-bullet-active { background: #152a45; }
+    .news-article__footer { text-align: center; margin-top: 3rem; }
 </style>
 @endpush
 
@@ -162,25 +91,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector('.gallery-slider')) {
         new Swiper('.gallery-slider', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            effect: 'fade',
-            fadeEffect: {
-                crossFade: true
-            }
+            slidesPerView: 1, spaceBetween: 30, loop: true,
+            autoplay: { delay: 5000, disableOnInteraction: false },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            effect: 'fade', fadeEffect: { crossFade: true }
         });
     }
 });
